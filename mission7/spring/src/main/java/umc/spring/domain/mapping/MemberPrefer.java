@@ -24,4 +24,15 @@ public class MemberPrefer extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private FoodCategory category;
+
+    public void setMember(Member member){
+        if(this.member != null)
+            member.getMemberPrefersList().remove(this);
+        this.member = member;
+        member.getMemberPrefersList().add(this);
+    }
+
+    public void setFoodCategory(FoodCategory foodCategory){
+        this.category = foodCategory;
+    }
 }
