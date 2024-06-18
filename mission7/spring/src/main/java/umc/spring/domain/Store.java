@@ -3,6 +3,7 @@ package umc.spring.domain;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import umc.spring.domain.common.BaseEntity;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Store extends BaseEntity {
     private String name;
     @Column(nullable = false, length = 50)
     private String address;
-    @Column(nullable = false)
+    @ColumnDefault("0")
     private Double score;
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)

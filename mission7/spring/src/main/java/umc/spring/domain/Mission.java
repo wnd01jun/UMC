@@ -1,5 +1,6 @@
 package umc.spring.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import umc.spring.domain.common.BaseEntity;
@@ -24,7 +25,7 @@ public class Mission extends BaseEntity {
     private Store store;
     @Column(nullable = false)
     private Integer reward;
-
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
     private LocalDateTime deadline;
     @Column(nullable = false)
     private String missionSpec;

@@ -1,7 +1,11 @@
 package umc.spring.domain;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import umc.spring.domain.common.BaseEntity;
 import umc.spring.domain.enums.Gender;
 import umc.spring.domain.enums.MemberStatus;
@@ -19,6 +23,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
+@DynamicInsert
+@DynamicUpdate
 public class Member extends BaseEntity {
     @Id
     @GeneratedValue
@@ -40,8 +46,10 @@ public class Member extends BaseEntity {
     private LocalDateTime inactiveDate;
     @Enumerated(EnumType.STRING)
     private SocialType socialType;
-    @Column(nullable = false, length = 50)
+//    @Column(nullable = false, length = 50)
+    @Nullable
     private String email;
+    @ColumnDefault("0")
     private Integer point;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
